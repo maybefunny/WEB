@@ -17,11 +17,15 @@
 			$del = mysqli_query($connection, "DELETE FROM profiles WHERE nrp='$nrp'");
 			
 			if($del){ // pesan berhasil
-				echo 'Data siswa berhasil di hapus! redirecting in 2';
-				echo '<meta http-equiv="refresh" content="2;url=/index.php">';
+				if(file_exists("images/".$nrp.".jpg")) unlink("images/".$nrp.".jpg");
+				else if(file_exists("images/".$nrp.".png")) unlink("images/".$nrp.".png");
+				else if(file_exists("images/".$nrp.".gif")) unlink("images/".$nrp.".gif");
+				else if(file_exists("images/".$nrp.".jpeg")) unlink("images/".$nrp.".jpeg");
+				echo 'Data siswa berhasil di hapus! redirecting in 1';
+				echo '<meta http-equiv="refresh" content="1;url=/index.php">';
 			}else{ // gagal
-				echo 'Gagal menghapus data! redirecting in 2';
-				echo '<meta http-equiv="refresh" content="2;url=/index.php">';
+				echo 'Gagal menghapus data! redirecting in 1';
+				echo '<meta http-equiv="refresh" content="1;url=/index.php">';
 			}
 		}
 	}else{

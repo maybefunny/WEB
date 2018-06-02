@@ -14,7 +14,7 @@
 	
 	<h3>Tambah Data</h3>
 	
-	<form action="tambah.php" method="post">
+	<form action="tambah.php" method="post" enctype="multipart/form-data">
 		<table cellpadding="3" cellspacing="0">
 			<tr>
 				<td>NRP</td>
@@ -35,6 +35,11 @@
 				<td>Tanggal lahir</td>
 				<td>:</td>
 				<td><input type="text" name="birthday" size="10" placeholder="yyyy-mm-dd" required></td></td>
+			</tr>
+			<tr>
+				<td>Foto</td>
+				<td>:</td>
+				<td><input type="file" name="fileToUpload" required></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

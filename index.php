@@ -31,6 +31,7 @@
 			<th>Nama</th>
 			<th>Tempat tinggal</th>
 			<th>Tanggal lahir</th>
+			<th>Foto</th>
 		</tr>
 		
 		<?php
@@ -41,7 +42,7 @@
 		}else{
 			$no = 1;	//membuat variabel $no untuk membuat nomor urut
 			while($data = mysqli_fetch_assoc($query)){	//perulangan while dg membuat variabel $data yang akan mengambil data di database
-				
+				$image=base64_encode($data['photo']);
 				//menampilkan row dengan data di database
 				echo '<tr>';
 					echo '<td>'.$no.'</td>';	//menampilkan nomor urut
@@ -49,8 +50,8 @@
 					echo '<td>'.$data['name'].'</td>';	//menampilkan data nama dari database
 					echo '<td>'.$data['residence'].'</td>';	//menampilkan data tempat tinggal dari database
 					echo '<td>'.$data['birthday'].'</td>';	//menampilkan data tanggal lahir dari database
+					echo '<td><img src="/images/'.$data['nrp'].'.jpg" width="175px" height="200px"/></td>';	//menampilkan data tanggal lahir dari database
 				echo '</tr>';
-				
 				$no++;	//menambah jumlah nomor urut setiap row
 				
 			}

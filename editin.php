@@ -7,12 +7,37 @@
 		$birthday	= $_POST['birthday'];
 		$query=mysqli_query($connection,"UPDATE profiles SET name='$name', residence='$residence', birthday='$birthday' WHERE nrp='$nrp' ");
 
-		if($query){
-			echo "edit success, redirecting to index in 2";
-			echo '<meta http-equiv="refresh" content="2;url=/index.php">';
+		if(file_exists("images/".$nrp.".jpg")) unlink("images/".$nrp.".jpg");
+		else if(file_exists("images/".$nrp.".png")) unlink("images/".$nrp.".png");
+		else if(file_exists("images/".$nrp.".gif")) unlink("images/".$nrp.".gif");
+		else if(file_exists("images/".$nrp.".jpeg")) unlink("images/".$nrp.".jpeg");
+
+		$target_dir = "images/";
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
+		$target_file = $target_dir . $nrp . "." . $imageFileType;
+
+		//check file size
+		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		    echo "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+
+		//check file type
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+		    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		    $uploadOk = 0;
+		}
+
+
+		if($query && $uploadOk){
+			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+				echo "edit success, redirecting to index in 1";
+				echo '<meta http-equiv="refresh" content="1;url=/index.php">';
+		    }
 		}else{
-			echo "edit failed, redirecting to index in 2";
-			echo '<meta http-equiv="refresh" content="2;url=/index.php">';
+			echo "edit failed, redirecting to index in 1";
+			echo '<meta http-equiv="refresh" content="1;url=/index.php">';
 		}
 	}else{//jika tidak terdeteksi tombol tambah di klik
 		//redirect atau dikembalikan ke halaman tambah

@@ -10,6 +10,7 @@
 	<title>delete coy</title>
 </head>
 <body>
+	<p><a href="index.php">home</a>
 	<form action="hapus.php" method="POST">
 		NRP :
 		<input type="text" name="nrp" placeholder="051***********">
