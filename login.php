@@ -16,7 +16,7 @@
 			$username = $connection->real_escape_string($username);
 			$password = $connection->real_escape_string($password);
 			// SQL query to fetch information of registerd users and finds user match.
-			$query = mysqli_query($connection, "select * from users where name='$username' AND password='$password'");
+			$query = mysqli_query($connection, "select * from users where username='$username' AND password='$password'");
 			$result = mysqli_query($connection, "select * from profiles order by nrp desc");
 			$rows = mysqli_num_rows($query);
 			if ($rows == 1) {
